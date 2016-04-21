@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="89d17b9d-77cd-4330-9079-3c72c97a8e67" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Trie.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/TrieNode.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/test.java" />
-    </list>
+    <list default="true" id="89d17b9d-77cd-4330-9079-3c72c97a8e67" name="Default" comment="" />
     <ignored path="Implement Trie (Prefix Tree).iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path="$PROJECT_DIR$/out/" />
