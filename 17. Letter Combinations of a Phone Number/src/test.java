@@ -3,7 +3,7 @@
  */
 public class test {
     public static void main(String[] args) {
-        String s="234";
+        String s="13";
         Solution solution=new Solution();
         System.out.print(solution.letterCombinations(s));
     }
