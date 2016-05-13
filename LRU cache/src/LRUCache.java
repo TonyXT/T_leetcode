@@ -10,50 +10,59 @@ public class LRUCache {
         int key;
         int value;
 
-        public Node(int key, int value){
-            this.key=key;
-            this.value=value;
-            this.prev=null;
-            this.next=null;
+        public Node(int key, int value) {
+            this.key = key;
+            this.value = value;
+            this.prev = null;
+            this.next = null;
         }
-
     }
+
     private int capacity;
-    HashMap<Integer,Node> hm=new HashMap<Integer,Node>();
-    Node head=new Node(-1,-1);
-    Node tail=new Node(-1,-1);
+    private HashMap<Integer, Node> hs = new HashMap<Integer, Node>();
+    private Node head = new Node(-1, -1);
+    private Node tail = new Node(-1, -1);
 
     public LRUCache(int capacity) {
-        this.capacity=capacity;
-        head.next=tail;
-        tail.prev=head;
+        this.capacity = capacity;
+        tail.prev = head;
+        head.next = tail;
     }
 
     public int get(int key) {
-        if(!hm.containsKey(key)) return-1;
-        Node current=hm.get(key);
-        current.prev.next=current.next;
-        current.next.prev=current.prev;
-        
-        return current.value;
+        if( !hs.containsKey(key)) {
+            return -1;
+        }
+
+        // remove current
+        Node current = hs.get(key);
+        current.prev.next = current.next;
+        current.next.prev = current.prev;
+
+        // move current to tail
+        move_to_tail(current);
+
+        return hs.get(key).value;
     }
 
     public void set(int key, int value) {
-        if(get(key)!=-1){
-            hm.get(key).value=value;
+        if( get(key) != -1) {
+            hs.get(key).value = value;
             return;
         }
-        if(hm.size()==capacity){
-            hm.remove(head.next.key);
-            head.next=head.next.next;
-            head.next.prev=head;
+
+        if (hs.size() == capacity) {
+            hs.remove(head.next.key);
+            head.next = head.next.next;
+            head.next.prev = head;
         }
-        Node node=new Node(key,value);
-        hm.put(key,node);
-        movetotail(node);
+
+        Node insert = new Node(key, value);
+        hs.put(key, insert);
+        move_to_tail(insert);
     }
 
-    private void movetotail(Node current){
+    private void move_to_tail(Node current) {
         current.prev = tail.prev;
         tail.prev = current;
         current.prev.next = current;
